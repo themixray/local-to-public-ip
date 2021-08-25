@@ -23,9 +23,9 @@ os.system('cls' if os.name=='nt' else 'clear')
 print('Ngrok IP:')
 print(colorama.Fore.YELLOW+ip)
 
-r = requests.get(f"http://{username}:{password}@dynupdate.no-ip.com/nic/update?hostname={host}&myip={ip}")
-if r.status_code != requests.codes.ok:
-    print(r.content)
+DDNS = noip_api.noip(host)
+DDNS.login(username=username, password=password)
+DDNS.setDNS(ip=ip)
 
 os.system('cls' if os.name=='nt' else 'clear')
 print('Public IP:')
