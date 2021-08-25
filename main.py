@@ -28,7 +28,7 @@ if r.status_code != requests.codes.ok:
     print(r.content)
 
 os.system('cls' if os.name=='nt' else 'clear')
-print('Public IP:'[:i0])
+print('Public IP:')
 print(colorama.Fore.GREEN+host)
 
 while True:
