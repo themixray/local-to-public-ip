@@ -1,5 +1,6 @@
 import requests
 from pyngrok import ngrok
+from noip_api import noip_api
 import socket
 import colorama
 import os
