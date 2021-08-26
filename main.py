@@ -23,13 +23,18 @@ host = input('NoIP Host: ')
 # -- SETTINGS --
 
 
+# -- VARS --
 colorama.init(autoreset=True)
 clear = lambda: os.system('cls' if os.name=='nt' else 'clear')
+ngrok.set_auth_token(ngrok_token)
+localip = socket.gethostbyname(socket.gethostname())
+try:
+    ngrok.disconnect(get_tunnels()[0].public_url)
+except: pass
+# -- VARS --
 
 
 # -- LOCAL --
-localip = socket.gethostbyname(socket.gethostname())
-
 clear()
 print('Local IP:')
 print(colorama.Fore.RED+localip)
@@ -37,11 +42,6 @@ print(colorama.Fore.RED+localip)
 
 
 # -- NGROK --
-ngrok.set_auth_token(ngrok_token)
-try:
-    ngrok.disconnect(get_tunnels()[0].public_url)
-except:
-    pass
 objip = ngrok.connect(25565, proto, bind_tls=True)
 ip = objip.public_url[8:]
 ipFromHost = socket.gethostbyname(ip)
